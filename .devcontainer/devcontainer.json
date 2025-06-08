@@ -1,0 +1,53 @@
+{
+    "name": "React Learning Environment",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-18-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.vscode-typescript-next",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-json",
+                "formulahendry.auto-rename-tag",
+                "christian-kohler.path-intellisense",
+                "ms-vscode.vscode-css-intellisense",
+                "ritwickdey.liveserver",
+                "ms-vscode.vscode-eslint"
+            ],
+            "settings": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": true
+                },
+                "typescript.preferences.quoteStyle": "single",
+                "javascript.preferences.quoteStyle": "single",
+                "emmet.includeLanguages": {
+                    "javascript": "javascriptreact"
+                },
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+    "forwardPorts": [
+        3000,
+        3001
+    ],
+    "portsAttributes": {
+        "3000": {
+            "label": "React Dev Server",
+            "onAutoForward": "notify"
+        },
+        "3001": {
+            "label": "Additional React App",
+            "onAutoForward": "ignore"
+        }
+    },
+    "postCreateCommand": "npm install",
+    "postStartCommand": "echo 'Welcome to your React Learning Environment! 🚀' && echo 'Run npm start to begin development' && echo 'Run ./deploy.ps1 to deploy to GitHub Pages'",
+    "remoteUser": "node"
+}
