@@ -3,13 +3,11 @@
     flex-direction: column;
     grid-template-rows: repeat(6, 50px);
     gap: 5px;
-    background-color: rgb(88 196 220);
+    background-color: var(--accent-color);
     padding: 5px 5px 10px 5px;
-    /* Increase bottom padding */
     border-radius: 10px;
     width: fit-content;
     position: relative;
-    /* Ensures that board is positioned correctly */
 }
 
 .row {
@@ -19,12 +17,12 @@
 .cell {
     width: 50px;
     height: 50px;
-    background-color: rgb(35 39 47);
+    background-color: var(--secondary-bg);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 3px
+    margin: 3px;
 }
 
 .cell.red {
@@ -36,42 +34,35 @@
 }
 
 .cell.hovered {
-    background-color: #19181a;
+    background-color: var(--hover-bg);
 }
 
 .c4-status {
     display: flex;
     margin-bottom: 0px;
     justify-content: center;
-    /* Centers horizontally */
 }
 
 .c4-button {
-    background-color: rgb(35 39 47);
-    color: rgb(88 196 220);
+    background-color: var(--secondary-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
     font-size: 16px;
     margin: 0px 0px;
-    border: 1px solid rgb(88, 196, 220);
-    /* Remove outline */
     border-radius: 0px;
-    /* Rounded corners */
     margin-left: 290px;
     margin-top: 22px;
 }
 
 .c4-button:hover {
-    border: 1px solid rgb(88, 196, 220);
-    /* Use the same border color as the squares */
-    background-color: #19181a;
-    /* Change background color on hover */
-    color: rgb(88, 196, 220);
-    /* Optional: Change text color on hover */
+    border: 1px solid var(--accent-color);
+    background-color: var(--hover-bg);
+    color: var(--accent-color);
 }
 
 .piece {
     display: inline-block;
     width: 20px;
-    /* Adjust size as needed */
     height: 20px;
     border-radius: 50%;
     margin-left: 5px;
@@ -89,7 +80,5 @@
 .player-indicator {
     display: flex;
     align-items: center;
-    /* Ensures vertical alignment */
     gap: 5px;
-    /* Adds spacing between text and circle */
 }

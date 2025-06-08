@@ -1,6 +1,7 @@
 .square {
-    background: #fff;
-    border: 1px solid #999;
+    background: var(--secondary-bg);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     float: left;
     font-size: 24px;
     font-weight: bold;
@@ -15,7 +16,7 @@
 
 .winning-square {
     background-color: yellow;
-    /* Highlight color */
+    color: var(--primary-bg);
     font-weight: bold;
 }
 
@@ -23,8 +24,8 @@
     clear: both;
     content: '';
     display: table;
-  }
-  
+}
+
 .status {
     margin-bottom: 10px;
 }
