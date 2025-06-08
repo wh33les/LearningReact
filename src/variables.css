@@ -1,0 +1,8 @@
+/* Shared CSS Variables - Add this file to your src/ folder */
+:root {
+    --primary-bg: #19181a;
+    --secondary-bg: rgb(35, 39, 47);
+    --accent-color: rgb(88, 196, 220);
+    --hover-bg: #19181a;
+    --font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}

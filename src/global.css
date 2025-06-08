@@ -1,3 +1,11 @@
+/* Add this line at the very top of your existing global.css */
+@import './variables.css';
+
+/* Then replace your existing CSS variables section with: */
+/* Variables now imported from variables.css */
+
+/* Keep all your existing styles below - no other changes needed */
+
 /** {
   box-sizing: border-box;
 }*/
