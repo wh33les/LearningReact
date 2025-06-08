@@ -1,31 +1,57 @@
-# Build the project
-npm run build
+# React App Deployment Script for LearningReact
+# Automates building and deploying to GitHub Pages
 
-# Ensure the build output is available before proceeding
-if (-Not (Test-Path ".\build")) {
-    Write-Host "Build failed or build directory missing."
+Write-Host "Starting deployment process..." -ForegroundColor Green
+
+# Check if we're in the correct directory
+if (!(Test-Path "package.json")) {
+    Write-Host "Error: package.json not found. Make sure you're in the LearningReact directory." -ForegroundColor Red
     exit 1
 }
 
-# Go up two directories
-cd ..\..
+# Stop any running development servers
+Write-Host "Stopping any running development servers..." -ForegroundColor Yellow
+Get-Process -Name "node" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 
-# Push changes to the repository
-git add --all
-git commit -m "Updated the learning-react app."
-git push
+# Clean up any existing build folder to prevent file locking issues
+Write-Host "Cleaning up build directory..." -ForegroundColor Yellow
+if (Test-Path "build") {
+    try {
+        Remove-Item -Path "build" -Recurse -Force -ErrorAction Stop
+        Write-Host "Build directory cleaned successfully." -ForegroundColor Green
+    }
+    catch {
+        Write-Host "Warning: Could not remove build directory. Continuing anyway..." -ForegroundColor Yellow
+    }
+}
 
-# Go back to the learning-react directory
-cd "LearningReact"
+# Build the React application
+Write-Host "Building React application..." -ForegroundColor Yellow
+npm run build
 
-# Delete any existing files in the destination before moving the build files
-Remove-Item -Path ".\index.html" -Force -ErrorAction SilentlyContinue
-Remove-Item -Path ".\asset-manifest.json" -Force -ErrorAction SilentlyContinue
-Remove-Item -Path ".\static" -Recurse -Force -ErrorAction SilentlyContinue
-Remove-Item -Path ".\sounds" -Recurse -Force -ErrorAction SilentlyContinue
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Build failed! Deployment aborted." -ForegroundColor Red
+    exit 1
+}
 
-# Move the contents of the build folder to the root of the react app
-Move-Item -Path ".\build\*" -Destination "." -Force
+Write-Host "Build completed successfully!" -ForegroundColor Green
 
-# Deploy the changes
-npm run deploy
+# Deploy to GitHub Pages
+Write-Host "Deploying to GitHub Pages..." -ForegroundColor Yellow
+npx gh-pages -d build
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Deployment failed!" -ForegroundColor Red
+    exit 1
+}
+
+Write-Host "Deployment completed successfully!" -ForegroundColor Green
+Write-Host "Your site should be available at: https://wh33les.github.io/LearningReact" -ForegroundColor Cyan
+
+# Optional: Open the deployed site in browser
+$response = Read-Host "Do you want to open the deployed site in your browser? (y/n)"
+if ($response -eq "y" -or $response -eq "Y") {
+    Start-Process "https://wh33les.github.io/LearningReact"
+}
+
+Write-Host "Deployment process complete!" -ForegroundColor Green
