@@ -1,0 +1,7 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+asset-manifest.json
+static/
