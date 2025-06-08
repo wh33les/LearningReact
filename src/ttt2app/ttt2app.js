@@ -266,7 +266,7 @@ function WinningOverlay({ winningLine }) {
         cy={centerY}
         rx={ellipseWidth / 2}
         ry={ellipseHeight / 2}
-        stroke="rgb(88 196 220)"
+        stroke="var(--accent-color)"
         strokeWidth="5"
         fill="transparent"
         strokeDasharray={circumference}
