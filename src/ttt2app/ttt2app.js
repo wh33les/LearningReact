@@ -167,7 +167,7 @@ export default function Game() {
         <button className="desc-button" onClick={toggleOrder}>
           {isAscending ? "Show Descending" : "Show Ascending"} {/* Button to toggle history order */}
         </button>
-        <p><h4><u>History:</u></h4></p>
+        <h4><u>History:</u></h4>
         <ul>{moves}</ul> {/* Display the list of moves */}
         {selectedMove !== null && (
           <p className="move-info">
