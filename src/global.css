@@ -1,137 +1,439 @@
-/* Add this line at the very top of your existing global.css */
+/**
+ * GLOBAL STYLES FOR REACT GAMES APPLICATION
+ * 
+ * This file contains application-wide styles that apply to all components.
+ * It establishes the foundational design system, typography, and layout patterns
+ * used throughout the React Games application.
+ * 
+ * Architecture:
+ * - Imports CSS custom properties from variables.css
+ * - Sets global defaults and resets
+ * - Defines reusable utility classes
+ * - Establishes consistent typography hierarchy
+ * - Provides layout containers and helpers
+ * 
+ * CSS concepts demonstrated:
+ * - CSS imports and modular architecture
+ * - Global styles and CSS reset techniques
+ * - Typography hierarchy and vertical rhythm
+ * - CSS counters for custom list styling
+ * - Flexbox layout patterns
+ * - CSS pseudo-elements and pseudo-classes
+ * - Responsive design foundations
+ */
+
+/* ===== CSS IMPORTS ===== */
+/**
+ * Import CSS custom properties (variables)
+ * 
+ * This must be the first rule to ensure variables are available
+ * for use throughout the rest of the stylesheet.
+ */
 @import './variables.css';
 
-/* Then replace your existing CSS variables section with: */
-/* Variables now imported from variables.css */
+/* ===== GLOBAL RESET AND BASE STYLES ===== */
 
-/* Keep all your existing styles below - no other changes needed */
-
+/**
+ * UNIVERSAL BOX-SIZING (COMMENTED OUT)
+ * 
+ * This rule would apply border-box sizing to all elements.
+ * Currently commented out but represents a common CSS reset technique.
+ * 
+ * When enabled, it makes width/height calculations more intuitive:
+ * - width includes padding and border
+ * - easier responsive design
+ * - more predictable layouts
+ */
 /** {
   box-sizing: border-box;
 }*/
 
-/* CSS Variables for consistent theming */
-:root {
-  --primary-bg: #19181a;
-  --secondary-bg: rgb(35, 39, 47);
-  --accent-color: rgb(88, 196, 220);
-  --hover-bg: #19181a;
-  --font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-}
-
+/**
+ * BODY ELEMENT - Foundation styles
+ * 
+ * Sets the basic appearance and typography for the entire application.
+ * All other elements inherit from these base styles.
+ */
 body {
+  /* BACKGROUND */
   background-color: var(--primary-bg);
+  /* Dark background from design system */
+
+  /* TYPOGRAPHY */
   font-family: var(--font-family);
+  /* System font stack from variables */
   font-weight: 400;
+  /* Normal font weight (not bold) */
+
+  /* VISUAL EFFECTS */
   opacity: 0.9;
+  /* Slight transparency for softer appearance */
+
+  /* RESET DEFAULT MARGINS */
+  /* Note: margin reset could be added here for more consistent cross-browser appearance */
+
+  /* DESIGN RATIONALE */
+  /* Dark background reduces eye strain in low-light conditions */
+  /* System fonts provide optimal performance and native appearance */
+  /* Slight opacity creates a softer, more sophisticated look */
 }
 
+/* ===== TYPOGRAPHY HIERARCHY ===== */
+
+/**
+ * HEADING STYLES (H1, H2, H3, H4)
+ * 
+ * Establishes consistent typography hierarchy throughout the application.
+ * All headings share the same font family and color for visual consistency.
+ */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-family);
+  /* Consistent with body font */
   color: var(--accent-color);
+  /* Bright color for emphasis and hierarchy */
+
+  /* DESIGN NOTES */
+  /* Bright accent color makes headings stand out against dark background */
+  /* Consistent font family maintains visual coherence */
+  /* Could be extended with font-size scale and line-height ratios */
 }
 
+/* ===== VISUAL ELEMENTS ===== */
+
+/**
+ * HORIZONTAL RULE STYLING
+ * 
+ * Customizes the appearance of <hr> elements to match the design system.
+ */
 hr {
   border-color: var(--accent-color);
+  /* Matches heading color for consistency */
+
+  /* USAGE */
+  /* Provides visual section breaks that integrate with the design system */
+  /* Maintains consistent accent color throughout the interface */
 }
 
+/* ===== LINK STYLES ===== */
+
+/**
+ * UNVISITED LINK STYLES
+ * 
+ * Styles for links that haven't been visited yet.
+ * Uses a purple-blue color that provides good contrast.
+ */
 :link {
   text-decoration: none;
+  /* Remove default underline */
   color: #4d5aa0;
+  /* Purple-blue color for unvisited links */
+
+  /* COLOR CHOICE */
+  /* Purple-blue suggests clickability while differentiating from accent color */
+  /* Sufficient contrast against dark background for accessibility */
 }
 
-/* for unvisited links */
+/**
+ * VISITED LINK STYLES
+ * 
+ * Styles for links that have been previously visited.
+ * Uses a different color to indicate visited state.
+ */
 :visited {
   text-decoration: none;
+  /* Consistent with unvisited links */
   color: #644451;
+  /* Muted purple-brown for visited state */
+
+  /* DESIGN RATIONALE */
+  /* Different color helps users track their navigation history */
+  /* Muted tone indicates "already seen" content */
 }
 
-/* when mouse is over link */
+/**
+ * LINK HOVER EFFECTS
+ * 
+ * Interactive feedback when users hover over links.
+ * Provides clear indication of clickable elements.
+ */
 a:hover {
   text-decoration: underline;
+  /* Add underline on hover for clarity */
   color: blue;
+  /* Classic blue color for hover state */
+
+  /* USER EXPERIENCE */
+  /* Underline appears on hover to confirm link functionality */
+  /* Blue color is universally recognized as a link indicator */
 }
 
+/* ===== TYPOGRAPHY UTILITIES ===== */
+
+/**
+ * CODE ELEMENT STYLING
+ * 
+ * Styles for inline code elements to make them visually distinct.
+ */
 code {
   font-size: 1.2em;
+  /* Slightly larger than surrounding text */
+
+  /* ENHANCEMENT OPPORTUNITIES */
+  /* Could add background color, padding, and monospace font */
+  /* Example: background: var(--secondary-bg); padding: 2px 4px; */
 }
 
+/* ===== LIST STYLING ===== */
+
+/**
+ * UNORDERED LIST STYLES
+ * 
+ * Customizes the default appearance of bulleted lists.
+ */
 ul {
   padding-inline-start: 18px;
+  /* Reduced indentation for tighter layout */
+
+  /* MODERN CSS PROPERTY */
+  /* padding-inline-start is a logical property that respects text direction */
+  /* Works better than padding-left for international applications */
 }
 
+/**
+ * LIST ITEM SPACING
+ * 
+ * Controls the vertical spacing between list items for better readability.
+ */
 ul li {
   margin-top: -12px;
+  /* Negative margin to tighten default spacing */
   margin-bottom: 18px;
+  /* Generous bottom margin for readability */
+
+  /* VERTICAL RHYTHM */
+  /* Creates consistent spacing that enhances text readability */
+  /* Balance between too cramped and too spread out */
 }
 
-/* Shared button base styles */
-.btn-base {
-  background-color: var(--secondary-bg);
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-  font-size: 16px;
-  margin: 0;
-  cursor: pointer;
-}
+/* ===== LAYOUT CONTAINERS ===== */
 
-.btn-base:hover {
-  border: 1px solid var(--accent-color);
-  background-color: var(--hover-bg);
-  color: var(--accent-color);
-}
-
+/**
+ * MAIN CONTENT CONTAINER
+ * 
+ * Primary container for game content with dark theme styling.
+ * Provides consistent width, centering, and visual styling.
+ */
 .bigdiv {
+  /* APPEARANCE */
   background-color: var(--secondary-bg);
+  /* Elevated surface color */
   color: var(--accent-color);
+  /* Bright text for contrast */
+
+  /* LAYOUT */
   width: 800px;
+  /* Fixed width for consistent layout */
   margin: auto;
+  /* Center horizontally */
+
+  /* SPACING */
   padding: 18px;
+  /* Internal spacing for content */
+
+  /* VISUAL EFFECTS */
   opacity: 1.0;
+  /* Full opacity (overrides body opacity) */
   overflow: hidden;
+  /* Contain child elements */
+
+  /* DEBUG BORDER (COMMENTED OUT) */
+  /*border:2px solid #BADA55*/
+  /* "Bad ass" green border for debugging */
+
+  /* DESIGN NOTES */
+  /* Acts as a "card" or elevated surface in the dark theme */
+  /* Fixed width provides consistent layout across different screen sizes */
+  /* Could be enhanced with border-radius and box-shadow */
 }
 
+/* ===== UTILITY CLASSES ===== */
+
+/**
+ * FLEX CONTAINER FOR GAMES
+ * 
+ * Utility class for centering game components horizontally.
+ */
 .jsapp {
   display: flex;
+  /* Enable flexbox layout */
   justify-content: center;
+  /* Center content horizontally */
   width: auto;
+  /* Allow natural width sizing */
+
+  /* USAGE */
+  /* Applied to containers that need to center their game content */
+  /* Provides consistent centering across different game components */
 }
 
+/* ===== CUSTOM LIST STYLING ===== */
+
+/**
+ * CHECKLIST COMPONENT STYLES
+ * 
+ * Creates a custom numbered list with checkmark functionality.
+ * Demonstrates advanced CSS techniques with counters and pseudo-elements.
+ */
+
+/**
+ * .checklist - Base checklist container
+ * 
+ * Removes default list styling and sets up custom numbering system.
+ */
 .checklist {
   list-style: none;
+  /* Remove default bullets/numbers */
   counter-reset: item;
+  /* Initialize CSS counter named "item" */
   padding: 0;
+  /* Remove default list padding */
+
+  /* CSS COUNTERS */
+  /* counter-reset initializes a counting mechanism */
+  /* Each list item will increment this counter */
 }
 
+/**
+ * .checklist li - Individual checklist items
+ * 
+ * Sets up positioning and spacing for custom number display.
+ */
 .checklist li {
   position: relative;
+  /* Create positioning context for pseudo-elements */
   counter-increment: item;
+  /* Increment the counter for each item */
   margin: 0px;
+  /* Reset default margins */
   padding-left: 25px;
+  /* Space for custom number display */
+
+  /* LAYOUT SYSTEM */
+  /* position: relative allows absolute positioning of pseudo-elements */
+  /* padding-left creates space for the custom number */
 }
 
+/**
+ * .checklist li::before - Custom number display
+ * 
+ * Creates the visible number for each checklist item.
+ */
 .checklist li::before {
   content: counter(item)". ";
+  /* Display counter value with period */
   position: absolute;
+  /* Position relative to parent li */
   left: 0;
+  /* Align to left edge */
   top: 0;
+  /* Align to top edge */
   transform: translate(60%, -15%);
+  /* Fine-tune positioning */
+
+  /* CSS COUNTER DISPLAY */
+  /* counter(item) outputs the current counter value */
+  /* ". " adds period and space after the number */
 }
 
+/**
+ * .checklist li.checked::after - Checkmark display
+ * 
+ * Shows a checkmark for completed items, positioned over the number.
+ */
 .checklist li.checked::after {
   content: "✔️";
+  /* Checkmark emoji */
   position: absolute;
+  /* Position relative to parent li */
   left: 0;
+  /* Align to left edge */
   top: 0;
+  /* Align to top edge */
+
+  /* VISUAL STYLING */
   color: #00ff00 !important;
+  /* Bright green color (!important for specificity) */
   font-size: 1.2em;
+  /* Slightly larger than text */
+
+  /* POSITIONING */
   transform: translate(5%, -40%);
+  /* Center over the number */
+
+  /* INTERACTION DESIGN */
+  /* Checkmark appears when .checked class is added via JavaScript */
+  /* Provides visual feedback for completed tasks */
 }
 
+/* ===== GAME LAYOUT STYLES ===== */
+
+/**
+ * GAME CONTAINER
+ * 
+ * Flexbox container for side-by-side game layout (board + info panel).
+ */
 .game {
   display: flex;
+  /* Enable flexbox layout */
   flex-direction: row;
+  /* Arrange children horizontally */
+
+  /* LAYOUT PATTERN */
+  /* Common pattern for game layouts: board on left, controls on right */
+  /* Flexbox provides responsive behavior and easy alignment */
 }
+
+/**
+ * ARCHITECTURAL NOTES
+ * 
+ * This global stylesheet demonstrates several important CSS architecture principles:
+ * 
+ * 1. MODULAR DESIGN
+ *    - Imports variables from separate file
+ *    - Separates concerns between global and component styles
+ *    - Uses consistent naming conventions
+ * 
+ * 2. DESIGN SYSTEM INTEGRATION
+ *    - Leverages CSS custom properties throughout
+ *    - Maintains consistent color and typography
+ *    - Provides reusable utility classes
+ * 
+ * 3. PROGRESSIVE ENHANCEMENT
+ *    - Provides good defaults that work everywhere
+ *    - Uses modern CSS features where supported
+ *    - Maintains fallbacks for older browsers
+ * 
+ * 4. ACCESSIBILITY CONSIDERATIONS
+ *    - Maintains good color contrast ratios
+ *    - Uses semantic HTML structure
+ *    - Provides clear visual hierarchy
+ * 
+ * 5. PERFORMANCE OPTIMIZATION
+ *    - Minimal CSS for global scope
+ *    - Efficient selectors
+ *    - Leverages CSS inheritance
+ * 
+ * FUTURE ENHANCEMENTS
+ * 
+ * This stylesheet could be extended with:
+ * - CSS Grid utilities for complex layouts
+ * - More comprehensive typography scale
+ * - Animation and transition utilities
+ * - Responsive design helpers
+ * - Print stylesheets
+ * - Dark/light theme switching
+ * - CSS logical properties for internationalization
+ */

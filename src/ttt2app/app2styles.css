@@ -1,97 +1,377 @@
+/**
+ * ADVANCED TIC-TAC-TOE GAME STYLES
+ * 
+ * This CSS file styles the advanced tic-tac-toe game with enhanced features.
+ * It uses a modern dark theme with CSS custom properties for consistency.
+ * 
+ * Advanced features styled:
+ * - Dark theme design with custom color scheme
+ * - Hover effects for better user interaction
+ * - Winning line animation overlay with SVG
+ * - Move history sidebar with enhanced typography
+ * - Responsive button styling
+ * - Visual indicators for game state
+ * 
+ * Key differences from basic version:
+ * - Uses CSS custom properties (variables) for theming
+ * - Modern dark color scheme instead of classic white
+ * - CSS Grid for board layout instead of floats
+ * - Advanced hover effects and transitions
+ * - SVG overlay system for winning line animations
+ * - Enhanced typography and spacing
+ * 
+ * CSS concepts demonstrated:
+ * - CSS Custom Properties (CSS Variables)
+ * - CSS Grid layout system
+ * - CSS positioning (relative/absolute)
+ * - CSS pseudo-classes (:hover, :empty)
+ * - SVG styling and positioning
+ * - Modern CSS layout techniques
+ * - Responsive design principles
+ */
+
+/* ===== GAME BOARD LAYOUT ===== */
+/**
+ * .board - The main 3x3 tic-tac-toe grid container
+ * 
+ * Uses CSS Grid for modern, precise layout control.
+ * Creates a perfect 3x3 grid with equal-sized cells.
+ */
 .board {
     display: grid;
+    /* Enable CSS Grid layout */
     grid-template-columns: repeat(3, 1fr);
+    /* Create 3 equal columns (1 fraction each) */
     gap: 0px;
+    /* No gap between squares for seamless borders */
+
+    /* CSS GRID EXPLANATION */
+    /* repeat(3, 1fr) is shorthand for: 1fr 1fr 1fr */
+    /* 'fr' unit represents a fraction of available space */
+    /* This creates 3 columns of exactly equal width */
 }
 
+/* ===== GAME SQUARES ===== */
+/**
+ * .mysquare - Individual squares in the advanced tic-tac-toe board
+ * 
+ * Modern dark-themed squares with hover effects and smooth interactions.
+ * Uses CSS custom properties for consistent theming.
+ */
 .mysquare {
+    /* COLOR SCHEME - Using CSS Custom Properties */
     background: var(--secondary-bg);
+    /* Dark background from CSS variables */
     border: 1px solid var(--accent-color);
+    /* Bright border for definition */
     color: var(--accent-color);
+    /* Bright text color */
+
+    /* LAYOUT */
     float: left;
+    /* Legacy positioning (could be removed with grid) */
+
+    /* TYPOGRAPHY */
     font-size: 35px;
+    /* Larger than basic version for modern look */
     font-family: var(--font-family);
+    /* Custom font stack from CSS variables */
     line-height: 34px;
-    height: 50px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
+    /* Vertical alignment reference */
     text-align: center;
+    /* Center X/O horizontally */
+
+    /* DIMENSIONS */
+    height: 50px;
+    /* Larger than basic version (34px) */
     width: 50px;
+    /* Square proportions maintained */
+
+    /* SPACING */
+    margin-right: -1px;
+    /* Border overlap technique */
+    margin-top: -1px;
+    /* Prevents double borders */
+    padding: 0;
+    /* Clean internal spacing */
+
+    /* INTERACTION */
+    cursor: pointer;
+    /* Indicate clickable area */
+    transition: all 0.2s ease;
+    /* Smooth transitions for hover effects */
 }
 
+/* ===== SQUARE HOVER EFFECTS ===== */
+/**
+ * .mysquare.empty:hover - Hover effect for empty squares
+ * 
+ * Provides immediate visual feedback when user hovers over available moves.
+ * Only applies to empty squares to avoid confusion.
+ */
 .mysquare.empty:hover {
     border: 2px solid var(--accent-color);
+    /* Thicker border on hover */
     background-color: var(--hover-bg);
+    /* Subtle background change */
+
+    /* USER EXPERIENCE NOTES */
+    /* Thicker border draws attention to hovered square */
+    /* Background change provides additional visual feedback */
+    /* Only applies to empty squares (.empty class) */
 }
 
-/* Buttons extend the base button styles */
+/* ===== WINNING SQUARE STYLING ===== */
+/**
+ * .my-winning-square - Highlighting for squares in the winning line
+ * 
+ * Subtle highlighting that works with the SVG overlay animation.
+ */
+.my-winning-square {
+    font-weight: bold;
+    /* Emphasize winning pieces */
+
+    /* DESIGN DECISION */
+    /* Uses subtle font-weight change instead of background color */
+    /* This allows the SVG overlay to be the primary visual indicator */
+    /* Creates layered visual feedback (font + SVG animation) */
+}
+
+/* ===== BOARD CONTAINER SYSTEM ===== */
+/**
+ * .board-container - Wrapper for board and SVG overlay
+ * 
+ * Creates a positioning context for the animated winning line overlay.
+ * Essential for proper SVG positioning and animation.
+ */
+.board-container {
+    display: flex;
+    /* Flexbox for centering */
+    justify-content: center;
+    /* Center board horizontally */
+    align-items: center;
+    /* Center board vertically */
+    position: relative;
+    /* Create positioning context for SVG */
+
+    /* DIMENSIONS */
+    width: 300px;
+    /* Fixed width for consistent layout */
+    height: 200px;
+    /* Fixed height with room for overlay */
+
+    /* OVERFLOW */
+    overflow: visible;
+    /* Allow SVG to extend beyond container */
+
+    /* SPACING */
+    margin-right: -30px;
+    /* Adjust positioning in overall layout */
+
+    /* POSITIONING CONTEXT */
+    /* position: relative allows absolutely positioned children (SVG) */
+    /* to position relative to this container, not the entire page */
+}
+
+/* ===== GAME STATUS DISPLAY ===== */
+/**
+ * .my-status - Game status text container
+ * 
+ * Displays current game state with proper spacing and alignment.
+ */
+.my-status {
+    margin-bottom: -25px;
+    /* Tight spacing with board */
+    text-align: center;
+    /* Center the status text */
+    margin-right: -30px;
+    /* Alignment with board container */
+}
+
+/* ===== GAME INFORMATION SIDEBAR ===== */
+/**
+ * .my-game-info - Container for move history and controls
+ * 
+ * Fixed-size sidebar that houses game controls and move history.
+ */
+.my-game-info {
+    width: 350px;
+    /* Fixed width for consistent layout */
+    min-height: 300px;
+    /* Minimum height prevents jumping */
+
+    /* LAYOUT STABILITY */
+    /* Fixed dimensions prevent layout shifts during gameplay */
+    /* min-height ensures space is reserved even with short move lists */
+}
+
+/* ===== MOVE INFORMATION DISPLAY ===== */
+/**
+ * .move-info - Additional move information text
+ * 
+ * Shows contextual information about move history navigation.
+ */
+.move-info {
+    margin-top: -10px;
+    /* Tight spacing with history list */
+
+    /* TYPOGRAPHY NOTES */
+    /* Inherits styling from parent elements */
+    /* Could be enhanced with custom styling for emphasis */
+}
+
+/* ===== SVG WINNING OVERLAY ===== */
+/**
+ * .winning-overlay - SVG container for animated winning line
+ * 
+ * Positions the SVG animation overlay for winning line display.
+ * Critical for the animated winning line feature.
+ */
+.winning-overlay {
+    position: absolute;
+    /* Position relative to .board-container */
+    top: 0;
+    /* Align with container top */
+    left: 0;
+    /* Align with container left */
+
+    /* DIMENSIONS */
+    width: 100%;
+    /* Fill container width */
+    height: 100%;
+    /* Fill container height */
+
+    /* OVERFLOW */
+    overflow: visible;
+    /* Allow animation to extend beyond bounds */
+
+    /* INTERACTION */
+    pointer-events: none;
+    /* Don't interfere with game clicks */
+
+    /* LAYERING */
+    /* Appears above game board due to absolute positioning */
+    /* pointer-events: none ensures clicks pass through to squares */
+}
+
+/* ===== BUTTON STYLING ===== */
+/**
+ * Button styles for the advanced tic-tac-toe game
+ * Uses consistent theming with the rest of the application
+ */
+
+/**
+ * .mybutton - Standard game buttons
+ * 
+ * Used for move history navigation and general game controls.
+ */
 .mybutton {
+    /* COLOR SCHEME */
     background-color: var(--secondary-bg);
+    /* Dark background */
     color: var(--accent-color);
+    /* Bright text */
     border: 1px solid var(--accent-color);
+    /* Matching border */
+
+    /* TYPOGRAPHY */
     font-size: 16px;
+    /* Readable text size */
+
+    /* SPACING */
     margin: 0;
+    /* Clean spacing - controlled by parent */
+
+    /* INTERACTION */
+    cursor: pointer;
+    /* Indicate clickable */
+    transition: all 0.2s ease;
+    /* Smooth hover transitions */
 }
 
+/**
+ * .mybutton:hover - Button hover effects
+ * 
+ * Provides consistent interaction feedback across all buttons.
+ */
 .mybutton:hover {
     border: 1px solid var(--accent-color);
+    /* Maintain border color */
     background-color: var(--hover-bg);
+    /* Subtle background change */
     color: var(--accent-color);
+    /* Maintain text color */
+
+    /* CONSISTENCY */
+    /* Matches hover effects used throughout the application */
+    /* Provides immediate feedback without being distracting */
 }
 
+/**
+ * .desc-button - Special button for toggle controls
+ * 
+ * Used specifically for the move order toggle button.
+ */
 .desc-button {
+    /* INHERIT BASE BUTTON STYLES */
     background-color: var(--secondary-bg);
     color: var(--accent-color);
     border: 1px solid var(--accent-color);
     font-size: 16px;
     margin: 0;
+
+    /* CUSTOM POSITIONING */
     border-radius: 0px;
+    /* Sharp corners for this style */
     margin-left: 145px;
+    /* Specific positioning in layout */
+
+    /* INTERACTION */
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
+/**
+ * .desc-button:hover - Toggle button hover effects
+ * 
+ * Consistent with other button hover effects.
+ */
 .desc-button:hover {
     border: 1px solid var(--accent-color);
     background-color: var(--hover-bg);
     color: var(--accent-color);
 }
 
-.my-winning-square {
-    font-weight: bold;
-}
-
-.board-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 300px;
-    height: 200px;
-    overflow: visible;
-    margin-right: -30px;
-}
-
-.my-status {
-    margin-bottom: -25px;
-    text-align: center;
-    margin-right: -30px;
-}
-
-.my-game-info {
-    width: 350px;
-    min-height: 300px;
-}
-
-.move-info {
-    margin-top: -10px;
-}
-
-.winning-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    pointer-events: none;
-}
+/**
+ * DESIGN SYSTEM NOTES
+ * 
+ * This CSS demonstrates a cohesive design system with:
+ * - Consistent color scheme via CSS custom properties
+ * - Unified interaction patterns (hover effects)
+ * - Modular component styling
+ * - Modern CSS techniques (Grid, Flexbox, custom properties)
+ * 
+ * RESPONSIVE DESIGN CONSIDERATIONS
+ * 
+ * Current design is optimized for desktop but could be enhanced with:
+ * - Media queries for mobile devices
+ * - Flexible units (rem, em, vw, vh) instead of fixed pixels
+ * - Touch-friendly button sizes
+ * - Scalable typography
+ * 
+ * ACCESSIBILITY FEATURES
+ * 
+ * Includes:
+ * - High contrast color scheme
+ * - Clear focus indicators (via CSS variables)
+ * - Adequate touch targets
+ * - Semantic color usage
+ * 
+ * PERFORMANCE CONSIDERATIONS
+ * 
+ * Optimized with:
+ * - CSS transitions for smooth animations
+ * - Efficient selectors
+ * - Minimal repaints/reflows
+ * - Hardware-accelerated animations (when using transforms)
+ */

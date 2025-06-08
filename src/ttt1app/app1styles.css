@@ -1,35 +1,186 @@
+/**
+ * BASIC TIC-TAC-TOE GAME STYLES
+ * 
+ * This CSS file styles the basic tic-tac-toe game component.
+ * It implements a classic, clean tic-tac-toe appearance with
+ * white squares and clear visual hierarchy.
+ * 
+ * Design philosophy:
+ * - Classic tic-tac-toe appearance (white squares, simple borders)
+ * - Clean, readable typography
+ * - Clear visual feedback for winning combinations
+ * - Responsive layout with proper spacing
+ * - Accessible design with good contrast
+ * 
+ * CSS concepts demonstrated:
+ * - CSS Box Model (padding, margin, border)
+ * - Float-based layout (legacy approach, still functional)
+ * - CSS pseudo-elements (::after for clearfix)
+ * - CSS selectors and specificity
+ * - Color contrast for accessibility
+ * - Typography and text alignment
+ */
+
+/* ===== GAME SQUARE STYLING ===== */
+/**
+ * .square - Individual squares on the tic-tac-toe board
+ * 
+ * These represent the 9 clickable areas where players place X's and O's.
+ * Uses a classic white appearance that's familiar and accessible.
+ */
 .square {
+    /* COLOR SCHEME */
     background: #fff;
+    /* Pure white background for classic look */
     border: 1px solid #999;
+    /* Light gray border for definition */
     color: #000;
+    /* Black text for maximum contrast */
+
+    /* LAYOUT */
     float: left;
+    /* Legacy float layout - creates horizontal alignment */
+    /* Modern alternative would be CSS Grid or Flexbox */
+
+    /* TYPOGRAPHY */
     font-size: 24px;
+    /* Large enough for clear X/O visibility */
     font-weight: bold;
+    /* Bold text for better visual impact */
     line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
+    /* Matches height for vertical centering */
     text-align: center;
+    /* Horizontal centering of X/O characters */
+
+    /* DIMENSIONS */
+    height: 34px;
+    /* Fixed height for consistent appearance */
     width: 34px;
+    /* Fixed width creates perfect squares */
+
+    /* SPACING */
+    margin-right: -1px;
+    /* Overlap borders to avoid double thickness */
+    margin-top: -1px;
+    /* Overlap borders vertically */
+    padding: 0;
+    /* No internal padding - keep squares compact */
+
+    /* INTERACTION */
+    cursor: pointer;
+    /* Indicate clickable area to users */
+
+    /* ACCESSIBILITY */
+    /* High contrast (white background, black text) ensures readability */
+    /* Clear borders help users distinguish individual squares */
 }
 
+/* ===== WINNING SQUARE HIGHLIGHTING ===== */
+/**
+ * .winning-square - Special styling for squares that form the winning line
+ * 
+ * Provides immediate visual feedback when someone wins the game.
+ * Uses bright yellow highlighting that's impossible to miss.
+ */
 .winning-square {
     background-color: yellow;
+    /* Bright highlight color for celebration */
     color: var(--primary-bg);
+    /* Dark text for contrast against yellow */
     font-weight: bold;
+    /* Extra emphasis for winning pieces */
+
+    /* DESIGN NOTES */
+    /* Yellow is universally recognized as a highlight color */
+    /* Dark text ensures readability against bright background */
+    /* Bold font weight adds to the celebratory feel */
 }
 
+/* ===== BOARD ROW CLEARFIX ===== */
+/**
+ * .board-row::after - Clearfix for float-based layout
+ * 
+ * This is a classic CSS technique to contain floated elements.
+ * Prevents layout collapse when all children are floated.
+ * Essential for proper board row structure.
+ */
 .board-row:after {
     clear: both;
+    /* Clear all floated elements */
     content: '';
+    /* Required for pseudo-element to appear */
     display: table;
+    /* Creates block-level clearing context */
+
+    /* EXPLANATION OF CLEARFIX */
+    /* When elements are floated, their parent container collapses */
+    /* This pseudo-element forces the parent to expand around floated children */
+    /* Modern alternative: Use CSS Grid or Flexbox instead of floats */
 }
 
+/* ===== GAME STATUS DISPLAY ===== */
+/**
+ * .status - Game status text (whose turn, winner, draw)
+ * 
+ * Displays important game information above the board.
+ * Provides clear communication about game state.
+ */
 .status {
     margin-bottom: 10px;
+    /* Space between status and game board */
+
+    /* LAYOUT NOTES */
+    /* Simple margin creates clean separation from board */
+    /* Inherits text styling from parent elements */
+    /* Could be enhanced with custom typography in future */
 }
 
+/* ===== GAME INFORMATION SIDEBAR ===== */
+/**
+ * .game-info - Container for move history and controls
+ * 
+ * Houses the move history list and game controls.
+ * Positioned to the right of the game board.
+ */
 .game-info {
     margin-left: 20px;
+    /* Space between board and info panel */
+
+    /* LAYOUT NOTES */
+    /* Creates clear visual separation between game board and controls */
+    /* Left margin works with the overall game layout structure */
+    /* Contains move history buttons and toggle controls */
 }
+
+/**
+ * LAYOUT STRUCTURE EXPLANATION
+ * 
+ * The overall layout uses a simple float-based system:
+ * 1. Game board uses floated squares in rows
+ * 2. Each row is cleared with the clearfix technique
+ * 3. Game info panel sits alongside with left margin
+ * 
+ * MODERN CSS ALTERNATIVES
+ * 
+ * This could be updated to use:
+ * - CSS Grid for the 3x3 board layout
+ * - Flexbox for overall game layout
+ * - CSS Custom Properties for consistent theming
+ * 
+ * ACCESSIBILITY CONSIDERATIONS
+ * 
+ * Current design provides:
+ * - High contrast colors (white/black)
+ * - Clear visual hierarchy
+ * - Adequate touch targets (34px squares)
+ * - Semantic HTML structure
+ * 
+ * POTENTIAL IMPROVEMENTS
+ * 
+ * Could be enhanced with:
+ * - Focus styles for keyboard navigation
+ * - Larger touch targets for mobile
+ * - Responsive design for different screen sizes
+ * - CSS animations for moves and wins
+ * - Dark mode support
+ */

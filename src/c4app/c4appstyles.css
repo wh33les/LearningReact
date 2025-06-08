@@ -1,84 +1,273 @@
+/**
+ * CONNECT FOUR GAME STYLES
+ * 
+ * This CSS file contains all styling for the Connect Four game component.
+ * It uses CSS custom properties (variables) for consistent theming and
+ * implements a classic Connect Four visual design with modern touches.
+ * 
+ * Key CSS concepts demonstrated:
+ * - CSS Custom Properties (variables) for maintainable theming
+ * - Flexbox layout for responsive game board
+ * - CSS Grid concepts (though using flexbox implementation)
+ * - Hover effects for user interaction feedback
+ * - CSS selectors and class combinations
+ * - Border-radius for circular game pieces
+ * - Positioning for button placement
+ */
+
+/* ===== MAIN GAME BOARD CONTAINER ===== */
+/**
+ * .c4board - The main Connect Four game board container
+ * 
+ * This creates the classic Connect Four blue board appearance
+ * with holes for game pieces to be dropped into.
+ */
 .c4board {
+    /* LAYOUT STRUCTURE */
     display: flex;
+    /* Use flexbox for layout */
     flex-direction: column;
+    /* Stack rows vertically */
+
+    /* LEGACY GRID REFERENCE */
     grid-template-rows: repeat(6, 50px);
+    /* Not used (flexbox instead), but shows grid thinking */
+
+    /* SPACING AND LAYOUT */
     gap: 5px;
+    /* Space between each row of holes */
+
+    /* VISUAL STYLING */
     background-color: var(--accent-color);
+    /* Blue board color (from CSS variables) */
     padding: 5px 5px 10px 5px;
+    /* Inner spacing: top, right, bottom, left */
+    /* Extra bottom padding to balance visual weight */
     border-radius: 10px;
+    /* Rounded corners for modern look */
+
+    /* SIZING */
     width: fit-content;
+    /* Board only as wide as its content */
+
+    /* POSITIONING */
     position: relative;
+    /* Allows absolute positioning of child elements */
+    /* Important for potential future enhancements */
 }
 
+/* ===== BOARD ROW CONTAINER ===== */
+/**
+ * .row - Individual row within the game board
+ * 
+ * Each row contains 7 cells (columns) arranged horizontally
+ */
 .row {
     display: flex;
+    /* Arrange cells horizontally using flexbox */
+    /* flex-direction defaults to 'row', so cells go left-to-right */
 }
 
+/* ===== INDIVIDUAL GAME CELLS ===== */
+/**
+ * .cell - Individual cell where game pieces can be placed
+ * 
+ * These represent the holes in a Connect Four board.
+ * They start as dark circles and change based on game state.
+ */
 .cell {
+    /* DIMENSIONS */
     width: 50px;
+    /* Fixed width for consistent board appearance */
     height: 50px;
+    /* Fixed height (square cells) */
+
+    /* VISUAL STYLING */
     background-color: var(--secondary-bg);
+    /* Dark hole color (from CSS variables) */
     border-radius: 50%;
+    /* Makes the square into a perfect circle */
+
+    /* LAYOUT */
     display: flex;
+    /* Use flexbox for centering piece inside */
     justify-content: center;
+    /* Center piece horizontally */
     align-items: center;
+    /* Center piece vertically */
+
+    /* SPACING */
     margin: 3px;
+    /* Space around each cell for visual separation */
+
+    /* INTERACTION */
+    cursor: pointer;
+    /* Show pointer cursor to indicate clickable */
 }
 
+/* ===== CELL STATE MODIFIERS ===== */
+/**
+ * Game piece colors - These override the default cell background
+ * when a piece is placed in the cell
+ */
 .cell.red {
     background-color: red;
+    /* Red player's pieces */
 }
 
 .cell.yellow {
     background-color: yellow;
+    /* Yellow player's pieces */
 }
 
+/**
+ * Hover state styling - Shows preview when user hovers over a column
+ * Provides immediate visual feedback for better user experience
+ */
 .cell.hovered {
     background-color: var(--hover-bg);
+    /* Darker shade to show hover (from CSS variables) */
+    /* This gives players a preview of where their piece would land */
 }
 
+/* ===== GAME STATUS DISPLAY ===== */
+/**
+ * .c4-status - Container for current game status text
+ * 
+ * Shows whose turn it is or who won the game
+ */
 .c4-status {
     display: flex;
+    /* Use flexbox for layout control */
     margin-bottom: 0px;
+    /* No space below status (tight layout) */
     justify-content: center;
+    /* Center the status text horizontally */
+    /* This creates a clean, centered status display above the board */
 }
 
+/* ===== RESTART BUTTON STYLING ===== */
+/**
+ * .c4-button - The restart game button
+ * 
+ * Styled to match the overall game theme and provide clear interaction
+ */
 .c4-button {
+    /* COLOR SCHEME */
     background-color: var(--secondary-bg);
+    /* Dark background (from CSS variables) */
     color: var(--accent-color);
+    /* Light text color for contrast */
     border: 1px solid var(--accent-color);
+    /* Matching border color */
+
+    /* TYPOGRAPHY */
     font-size: 16px;
+    /* Readable text size */
+
+    /* SPACING */
     margin: 0px 0px;
-    border-radius: 0px;
+    /* No top/bottom margin */
     margin-left: 290px;
+    /* Position button to the right */
     margin-top: 22px;
+    /* Space above button */
+
+    /* STYLING */
+    border-radius: 0px;
+    /* Sharp corners (design choice) */
+
+    /* INTERACTION */
+    cursor: pointer;
+    /* Show pointer cursor on hover */
 }
 
+/**
+ * Button hover effect - Provides visual feedback on interaction
+ * Changes background when user hovers over the restart button
+ */
 .c4-button:hover {
     border: 1px solid var(--accent-color);
+    /* Keep same border color */
     background-color: var(--hover-bg);
+    /* Darker background on hover */
     color: var(--accent-color);
+    /* Keep same text color */
+    /* This creates a subtle but noticeable hover effect */
 }
 
+/* ===== PLAYER INDICATOR PIECES ===== */
+/**
+ * .piece - Small circular indicators used in status display
+ * 
+ * These show which color/player is currently active or has won
+ * Separate from the main game pieces for status display only
+ */
 .piece {
     display: inline-block;
+    /* Allows width/height while staying inline */
+
+    /* DIMENSIONS */
     width: 20px;
+    /* Smaller than game pieces */
     height: 20px;
+    /* Square dimensions */
+
+    /* STYLING */
     border-radius: 50%;
+    /* Make it circular */
+
+    /* POSITIONING */
     margin-left: 5px;
+    /* Small space from text */
     margin-top: 3px;
+    /* Slight vertical adjustment for alignment */
 }
 
+/* ===== PIECE COLOR CLASSES ===== */
+/**
+ * Color classes for the status indicator pieces
+ * These match the main game piece colors
+ */
 .red {
     background-color: red;
+    /* Red player indicator */
 }
 
 .yellow {
     background-color: yellow;
+    /* Yellow player indicator */
 }
 
+/* ===== PLAYER INDICATOR LAYOUT ===== */
+/**
+ * .player-indicator - Container for status text and piece indicator
+ * 
+ * Ensures proper alignment between text and colored piece
+ */
 .player-indicator {
     display: flex;
+    /* Use flexbox for alignment */
     align-items: center;
+    /* Vertically center text and piece */
     gap: 5px;
+    /* Consistent space between text and piece */
+    /* This creates a clean, aligned status display */
 }
+
+/**
+ * RESPONSIVE DESIGN CONSIDERATIONS
+ * 
+ * This CSS is designed for desktop use but could be enhanced with:
+ * - Media queries for mobile devices
+ * - Flexible sizing using viewport units
+ * - Touch-friendly button sizes
+ * 
+ * ACCESSIBILITY IMPROVEMENTS POSSIBLE
+ * 
+ * Future enhancements could include:
+ * - Focus states for keyboard navigation
+ * - ARIA labels for screen readers
+ * - High contrast mode support
+ * - Reduced motion preferences
+ */
