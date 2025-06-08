@@ -14,6 +14,7 @@
   <meta name="twitter:card" content="../../photos/jobinterview.ico">
   <title>Learning React | Ashley K. W. Warren</title>
   <link rel="icon" type="image/x-icon" href="../../photos/jobinterview.ico" alt="Job Interview Icon">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100299463-1"></script>
   <script>
@@ -78,9 +79,9 @@
   <div id="lastmodified" class="bigdiv"></div>
 
   <script>
-    var date = document.lastModified;
-    var lastModifiedDate = new Date(date);
-    document.getElementById("lastmodified").innerHTML = "<hr><i>Last modified: </i>" + lastModifiedDate.toLocaleString();
+    $(function () {
+      $('#lastmodified').load('lastmodified.html');
+    });
   </script>
 </body>
 
