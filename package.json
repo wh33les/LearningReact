@@ -1,5 +1,5 @@
 {
-  "name": "react.dev",
+  "name": "learningreact",
   "version": "0.0.0",
   "main": "/src/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://wh33les.github.io/Projects/learning-react",
+  "homepage": "https://wh33les.github.io/LearningReact",
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }

@@ -16,7 +16,7 @@ git commit -m "Updated the learning-react app."
 git push
 
 # Go back to the learning-react directory
-cd "Projects/learning-react"
+cd "LearningReact"
 
 # Delete any existing files in the destination before moving the build files
 Remove-Item -Path ".\index.html" -Force -ErrorAction SilentlyContinue
