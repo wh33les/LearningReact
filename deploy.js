@@ -15,6 +15,8 @@
  * - Interactive commit messages instead of automatic timestamps
  * - Better error detection and reporting
  * - Clearer separation between source code push and deployment
+ * - Handles unpushed commits properly (detects "ahead of origin/main")
+ * - Smart logic: only commits if changes exist, only pushes if needed
  */
 
 // ===== REQUIRED MODULES =====
@@ -189,8 +191,10 @@ async function validateEnvironment() {
 /**
  * SOURCE CODE MANAGEMENT WITH INTERACTIVE COMMIT
  * 
- * Handles committing changes with user-provided commit message
- * and pushing to GitHub main branch.
+ * Handles three scenarios:
+ * 1. Uncommitted changes: Commits with user message and pushes
+ * 2. Unpushed commits: Just pushes existing commits
+ * 3. Everything up-to-date: Skips to deployment
  * 
  * @returns {Promise<boolean>} - True if source code management succeeds
  */
@@ -199,13 +203,18 @@ async function manageSourceCode() {
 
     try {
         // Check for uncommitted changes
-        const status = await runCommand('git status --porcelain');
+        const workingTreeStatus = await runCommand('git status --porcelain');
 
-        if (status.length === 0) {
-            logger.info('No uncommitted changes found');
-        } else {
+        // Check if we're ahead of remote (have unpushed commits)
+        const fullStatus = await runCommand('git status');
+        const hasUnpushedCommits = fullStatus.includes('ahead of') || fullStatus.includes('diverged');
+
+        let needsPush = false;
+
+        // Handle uncommitted changes
+        if (workingTreeStatus.length > 0) {
             logger.info('Uncommitted changes detected:');
-            console.log(status);
+            console.log(workingTreeStatus);
 
             // Get commit message from user
             const commitMessage = await getUserInput('\n💬 Enter commit message (or press Enter for default): ');
@@ -218,24 +227,46 @@ async function manageSourceCode() {
             // Commit changes
             await runCommand(`git commit -m "${finalMessage}"`);
             logger.success(`Committed: ${finalMessage}`);
+
+            needsPush = true;
+        } else {
+            logger.success('Working tree is clean - no uncommitted changes');
         }
 
-        // Push to GitHub main branch
-        logger.progress('Pushing to GitHub main branch...');
-        await runCommand('git push origin main');
-        logger.success('Successfully pushed to GitHub main branch');
+        // Handle unpushed commits
+        if (hasUnpushedCommits) {
+            logger.info('Local commits found that need to be pushed to GitHub');
+            needsPush = true;
+        }
+
+        // Push if needed
+        if (needsPush) {
+            logger.progress('Pushing commits to GitHub main branch...');
+            await runCommand('git push origin main');
+            logger.success('Successfully pushed to GitHub main branch');
+        } else {
+            logger.info('Repository is up-to-date with GitHub - no push needed');
+        }
 
         return true;
 
     } catch (error) {
         logger.error(`Source code management failed: ${error.message}`);
 
-        // Provide specific guidance for git push issues
+        // Provide specific guidance for different error types
+        if (error.message.includes('git commit')) {
+            logger.info('💡 Git commit troubleshooting:');
+            logger.info('   - Check git configuration: git config --list');
+            logger.info('   - Set user: git config --global user.name "Your Name"');
+            logger.info('   - Set email: git config --global user.email "your@email.com"');
+        }
+
         if (error.message.includes('git push')) {
             logger.info('💡 Git push troubleshooting:');
             logger.info('   - Check internet connection');
             logger.info('   - Verify GitHub credentials: git config --list');
             logger.info('   - Ensure repository permissions');
+            logger.info('   - Try manual push: git push origin main -v');
         }
 
         return false;
@@ -441,6 +472,8 @@ main();
  *    - Uses npx gh-pages directly instead of npm run deploy
  *    - Verifies build artifacts exist before deployment
  *    - Confirms gh-pages branch was actually updated
+ *    - Handles both uncommitted changes AND unpushed commits
+ *    - Smart detection: only commits when needed, only pushes when needed
  * 
  * 5. ENHANCED USER EXPERIENCE
  *    - Clear progress indicators and phase separation
