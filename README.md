@@ -13,7 +13,7 @@ This project represents my journey learning React by building three progressivel
 ### 🎮 Games Included
 
 1. **Basic Tic-Tac-Toe** - Classic implementation following React tutorial
-2. **Advanced Tic-Tac-Toe** - Enhanced with animations, sounds, and modern styling
+2. **Advanced Tic-Tac-Toe** - Enhanced with animations, sounds, and modern styling 
 3. **Connect Four** - Custom game with complex logic and visual effects
 
 ## 🛠 Technology Stack
@@ -347,7 +347,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Ashley K. W. Warren**
 - GitHub: [@wh33les](https://github.com/wh33les)
 - Portfolio: [wh33les.github.io](https://wh33les.github.io)
 
