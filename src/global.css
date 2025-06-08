@@ -2,10 +2,18 @@
   box-sizing: border-box;
 }*/
 
+/* CSS Variables for consistent theming */
+:root {
+  --primary-bg: #19181a;
+  --secondary-bg: rgb(35, 39, 47);
+  --accent-color: rgb(88, 196, 220);
+  --hover-bg: #19181a;
+  --font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
 body {
-  background-color: #19181a;
-  /* Grabbed from the React tutorial page */
-  font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  background-color: var(--primary-bg);
+  font-family: var(--font-family);
   font-weight: 400;
   opacity: 0.9;
 }
@@ -14,12 +22,12 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  color: rgb(88 196 220);
+  font-family: var(--font-family);
+  color: var(--accent-color);
 }
 
 hr {
-  border-color: rgb(88 196 220);
+  border-color: var(--accent-color);
 }
 
 :link {
@@ -33,13 +41,12 @@ hr {
   color: #644451;
 }
 
-/* for visited links */
+/* when mouse is over link */
 a:hover {
   text-decoration: underline;
   color: blue;
 }
 
-/* when mouse is over link */
 code {
   font-size: 1.2em;
 }
@@ -51,21 +58,31 @@ ul {
 ul li {
   margin-top: -12px;
   margin-bottom: 18px;
-  /* Add space between list items */
+}
+
+/* Shared button base styles */
+.btn-base {
+  background-color: var(--secondary-bg);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  font-size: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.btn-base:hover {
+  border: 1px solid var(--accent-color);
+  background-color: var(--hover-bg);
+  color: var(--accent-color);
 }
 
 .bigdiv {
-  background-color: rgb(35 39 47);
-  color: rgb(88 196 220);
-  /*Color grabbed from the React tutorial page*/
-  /*#19181a;*/
+  background-color: var(--secondary-bg);
+  color: var(--accent-color);
   width: 800px;
   margin: auto;
   padding: 18px;
-  /*padding-top:0; */
   opacity: 1.0;
-  /*border:2px solid #BADA55*/
-  /* bad ass border, for debugging */
   overflow: hidden;
 }
 
@@ -77,22 +94,15 @@ ul li {
 
 .checklist {
   list-style: none;
-  /* Remove default numbering */
   counter-reset: item;
-  /* Initialize counter */
   padding: 0;
-  /* Remove default padding */
 }
 
 .checklist li {
   position: relative;
-  /* Position relative to allow absolute positioning of the checkmark */
   counter-increment: item;
-  /* Increment the counter for each list item */
   margin: 0px;
-  /* Add space between list items */
   padding-left: 25px;
-  /* Add padding to make room for the number */
 }
 
 .checklist li::before {
@@ -105,19 +115,12 @@ ul li {
 
 .checklist li.checked::after {
   content: "✔️";
-  /* Show the checkmark */
   position: absolute;
-  /* Position the checkmark absolutely */
   left: 0;
-  /* Align to the left */
   top: 0;
-  /* Align to the top */
   color: #00ff00 !important;
-  /* Change the color of the checkmark */
   font-size: 1.2em;
-  /* Adjust the size of the checkmark */
   transform: translate(5%, -40%);
-  /* Center the checkmark over the number */
 }
 
 .game {
