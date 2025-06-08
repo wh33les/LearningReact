@@ -1,0 +1,95 @@
+.c4board {
+    display: flex;
+    flex-direction: column;
+    grid-template-rows: repeat(6, 50px);
+    gap: 5px;
+    background-color: rgb(88 196 220);
+    padding: 5px 5px 10px 5px;
+    /* Increase bottom padding */
+    border-radius: 10px;
+    width: fit-content;
+    position: relative;
+    /* Ensures that board is positioned correctly */
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(35 39 47);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px
+}
+
+.cell.red {
+    background-color: red;
+}
+
+.cell.yellow {
+    background-color: yellow;
+}
+
+.cell.hovered {
+    background-color: #19181a;
+}
+
+.c4-status {
+    display: flex;
+    margin-bottom: 0px;
+    justify-content: center;
+    /* Centers horizontally */
+}
+
+.c4-button {
+    background-color: rgb(35 39 47);
+    color: rgb(88 196 220);
+    font-size: 16px;
+    margin: 0px 0px;
+    border: 1px solid rgb(88, 196, 220);
+    /* Remove outline */
+    border-radius: 0px;
+    /* Rounded corners */
+    margin-left: 290px;
+    margin-top: 22px;
+}
+
+.c4-button:hover {
+    border: 1px solid rgb(88, 196, 220);
+    /* Use the same border color as the squares */
+    background-color: #19181a;
+    /* Change background color on hover */
+    color: rgb(88, 196, 220);
+    /* Optional: Change text color on hover */
+}
+
+.piece {
+    display: inline-block;
+    width: 20px;
+    /* Adjust size as needed */
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.player-indicator {
+    display: flex;
+    align-items: center;
+    /* Ensures vertical alignment */
+    gap: 5px;
+    /* Adds spacing between text and circle */
+}

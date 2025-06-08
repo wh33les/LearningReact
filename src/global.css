@@ -1,0 +1,126 @@
+/** {
+  box-sizing: border-box;
+}*/
+
+body {
+  background-color: #19181a;
+  /* Grabbed from the React tutorial page */
+  font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  color: rgb(88 196 220);
+}
+
+hr {
+  border-color: rgb(88 196 220);
+}
+
+:link {
+  text-decoration: none;
+  color: #4d5aa0;
+}
+
+/* for unvisited links */
+:visited {
+  text-decoration: none;
+  color: #644451;
+}
+
+/* for visited links */
+a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* when mouse is over link */
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 18px;
+}
+
+ul li {
+  margin-top: -12px;
+  margin-bottom: 18px;
+  /* Add space between list items */
+}
+
+.bigdiv {
+  background-color: rgb(35 39 47);
+  color: rgb(88 196 220);
+  /*Color grabbed from the React tutorial page*/
+  /*#19181a;*/
+  width: 800px;
+  margin: auto;
+  padding: 18px;
+  /*padding-top:0; */
+  opacity: 1.0;
+  /*border:2px solid #BADA55*/
+  /* bad ass border, for debugging */
+  overflow: hidden;
+}
+
+.jsapp {
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+
+.checklist {
+  list-style: none;
+  /* Remove default numbering */
+  counter-reset: item;
+  /* Initialize counter */
+  padding: 0;
+  /* Remove default padding */
+}
+
+.checklist li {
+  position: relative;
+  /* Position relative to allow absolute positioning of the checkmark */
+  counter-increment: item;
+  /* Increment the counter for each list item */
+  margin: 0px;
+  /* Add space between list items */
+  padding-left: 25px;
+  /* Add padding to make room for the number */
+}
+
+.checklist li::before {
+  content: counter(item)". ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(60%, -15%);
+}
+
+.checklist li.checked::after {
+  content: "✔️";
+  /* Show the checkmark */
+  position: absolute;
+  /* Position the checkmark absolutely */
+  left: 0;
+  /* Align to the left */
+  top: 0;
+  /* Align to the top */
+  color: #00ff00 !important;
+  /* Change the color of the checkmark */
+  font-size: 1.2em;
+  /* Adjust the size of the checkmark */
+  transform: translate(5%, -40%);
+  /* Center the checkmark over the number */
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
